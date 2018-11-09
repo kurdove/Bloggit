@@ -1,7 +1,10 @@
 const request = require("request");
 const server = require("../../src/server");
 const base = "http://localhost:3000/";
+
+//assignment-01 begin
 const marco = "http://localhost:3000/marco";
+//assignment-01 end
 
 describe('routes : static', ()=>{
     describe('GET /', ()=>{
@@ -13,6 +16,7 @@ describe('routes : static', ()=>{
         });
     });
 
+    //assignment-01 begin
     describe('GET /marco', ()=>{
         it('should return status code 200 and --polo--', (done)=>{
             request.get(marco, (err, res, body)=>{
@@ -21,4 +25,5 @@ describe('routes : static', ()=>{
             });
         });
     });
+    //assignment-01 end
 });
