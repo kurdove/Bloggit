@@ -1,6 +1,7 @@
 const request = require("request");
 const server = require("../../src/server");
 const base = "http://localhost:3000/";
+const about = "http://localhost:3000/about";
 
 //assignment-01 begin
 const marco = "http://localhost:3000/marco";
@@ -8,7 +9,7 @@ const marco = "http://localhost:3000/marco";
 
 describe('routes : static', ()=>{
     describe('GET /', ()=>{
-        it("should return status code 200 and have 'Welcome to Bloccit' in the body of the response", ()=>{
+        it("should return status code 200 and have 'Welcome to Bloccit' in the body of the response", (done)=>{
             request.get(base, (err, res, body)=>{
                 expect(res.statusCode).toBe(200);
                 expect(body).toContain("Welcome to Bloccit");
@@ -18,13 +19,26 @@ describe('routes : static', ()=>{
     });
 
     //assignment-01 begin
-    describe('GET /marco', ()=>{
-        it('should return status code 200 and --polo--', (done)=>{
-            request.get(marco, (err, res, body)=>{
+    // describe('GET /marco', ()=>{
+    //     it('should return status code 200 and --polo--', ()=>{
+    //         request.get(marco, (err, res, body)=>{
+    //             expect(res.statusCode).toBe(200);
+    //             expect(body).toContain('polo');
+    //             done();
+    //         });
+    //     });
+    // });
+    //assignment-01 end
+
+    //assignment-03 begin
+    describe('GET /about', ()=>{
+        it("should return status code 200 and have 'About Us' in the body of the response", (done)=>{
+            request.get(about, (err, res, body)=>{
                 expect(res.statusCode).toBe(200);
-                expect(body).toBe('polo');
+                expect(body).toContain('About Us');
+                done();
             });
         });
     });
-    //assignment-01 end
+    //assignment-03 end
 });
