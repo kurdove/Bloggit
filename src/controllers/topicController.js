@@ -9,6 +9,6 @@ module.exports = {
             } else {
                 res.render("topics/index", {topics});
             }
-            })
+            });
     }
   }
