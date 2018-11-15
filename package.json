@@ -10,10 +10,12 @@
   "author": "Evgheni Curdov",
   "license": "ISC",
   "devDependencies": {
+    "faker": "^4.1.0",
     "jasmine": "^3.3.0",
     "request": "^2.83.0"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "dotenv": "^5.0.0",
     "ejs": "^2.6.1",
     "express": "^4.16.2",
