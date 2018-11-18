@@ -31,7 +31,7 @@ module.exports = {
         references: {        // association information
           model: "Topics",   // table name
           key: "id",         // attribute to use
-          as: "topicId"      // reference as topicId
+          as: "topicId",      // reference as topicId
         },
       }
     });
