@@ -10,13 +10,16 @@
       <h1><%= topic.title %></h1>
         <a href="/topics/<%= topic.id %>/edit" class="btn btn-warning">Edit</a>
         <a href="/topics/<%= topic.id %>/posts/new" class="btn btn-success">New Post</a>
+        <!--assignment-09 begin-->
+        <a href="/topics/<%= topic.id %>/flairs/new" class="btn btn-success">New Flair</a>
+        <!--assignment-09 begin-->
 
         <form style="display:initial" action="/topics/<%= topic.id %>/destroy" method="post">
         <button type="submit" class="btn btn-danger">Delete</button>
         </form>
       <p><%= topic.description %></p>
+      
       <hr>
-
       <h1>Posts</h1>
 
       <ul class="list-group">
@@ -26,6 +29,19 @@
           </li>
         <% }) %>
       </ul>
+      <!--assignment-09 begin-->
+      <hr>
+      <h1>Flairs</h1>
+
+      <ul class="list-group">
+        <% topic.flairs.forEach((flair) => { %>
+          <li class="list-group-item">
+            <a href="/topics/<%= topic.id %>/flairs/<%= flair.id %>"> <%= flair.title %> </a>
+          </li>
+        <% }) %>
+      </ul>
+      <!--assignment-09 end-->
+      
     </main>
 
     <% include ../static/partials/baseScripts.ejs %>
