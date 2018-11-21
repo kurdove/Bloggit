@@ -146,7 +146,8 @@ describe("routes : flairs", () => {
             const options = {
               url: `${base}/${this.topic.id}/flairs/${this.flair.id}/update`,
               form: {
-                name: "Trend Flair"
+                name: "Trend Flair",
+                color: "Red"
               }
             };
             request.post(options,
