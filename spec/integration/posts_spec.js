@@ -161,6 +161,8 @@ describe("routes : posts", () => {
               body: "I love watching them melt slowly."
             }
           }, (err, res, body) => {
+              console.log(err);
+              console.log("-------");
             expect(res.statusCode).toBe(302);
             done();
           });
@@ -186,6 +188,30 @@ describe("routes : posts", () => {
                     done();
                 });
             });
+        });
+
+        it("should not update a post that fails validations", (done) => {
+            const options = {
+              url: `${base}/${this.topic.id}/posts/${this.post.id}/update`,
+              form: {
+                title: "a",
+                body: "b"
+              }
+            };
+     
+            request.post(options,
+              (err, res, body) => {
+                Post.findOne({where: {title: "a"}})
+                .then((post) => {
+                    expect(post).toBeNull();
+                    done();
+                })
+                .catch((err) => {
+                  console.log(err);
+                  done();
+                });
+              }
+            );
         });
    
     });
