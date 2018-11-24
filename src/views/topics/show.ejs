@@ -10,7 +10,10 @@
       <% include ../static/partials/messages.ejs %>
       <h1><%= topic.title %></h1>
         <a href="/topics/<%= topic.id %>/edit" class="btn btn-warning">Edit</a>
+        <% if(currentUser) { %>
         <a href="/topics/<%= topic.id %>/posts/new" class="btn btn-success">New Post</a>
+        <% } %>
+        
         <!--assignment-09 begin-->
         <a href="/topics/<%= topic.id %>/flairs/new" class="btn btn-success">New Flair</a>
         <!--assignment-09 begin-->
