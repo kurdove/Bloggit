@@ -48,7 +48,7 @@ module.exports = {
   },
 
   updatePost(req, updatedPost, callback){
-
+    console.log(`\nupdatePostCalled:\n${req.params}`);
     return Post.findById(req.params.id)
     .then((post) => {
       if(!post){
