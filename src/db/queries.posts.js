@@ -48,10 +48,10 @@ module.exports = {
   },
 
   updatePost(req, updatedPost, callback) {
-    console.log('PARAMS ID:', req.params.id);
+    // console.log('PARAMS ID:', req.params.id);
     return Post.findById(req.params.id)
       .then((post) => {
-        console.log('POST:', post);
+        // console.log('POST:', post);
         if(!post) {
           return callback('Post not found');
         }
