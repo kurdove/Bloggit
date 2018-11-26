@@ -47,32 +47,32 @@ module.exports = {
     });
   },
 
-  updatePost(req, updatedPost, callback){
-    // console.log(`\nupdatePostCalled:\n${JSON.stringify(req)}`);
-    return Post.findById(req.id)
-    .then((post) => {
-      if(!post){
-        return callback("Post not found");
-      }
-
-      const authorized = new Authorizer(req.user, post).update();
-
-      if(authorized) {
-        post.update(updatedPost, {
-          fields: Object.keys(updatedPost)
-        })
-        .then(() => {
-          callback(null, post);
-        })
-        .catch((err) => {
-          callback(err);
-        });
+  updatePost(req, updatedPost, callback) {
+    console.log('PARAMS ID:', req.params.id);
+    return Post.findById(req.params.id)
+      .then((post) => {
+        console.log('POST:', post);
+        if(!post) {
+          return callback('Post not found');
+        }
+        const authorized = new Authorizer(req.user, post).update();
+        
+        if(authorized) {
+        
+          post.update(updatedPost, {
+            fields: Object.keys(updatedPost)
+          })
+          .then(() => {
+            callback(null, post);
+          })
+          .catch((err) => {
+            callback(err);
+          });
       } else {
-        req.flash("notice", "You are not authorized to do that.");
-        callback("Forbidden");
+        req.flash('notice', 'You are not authorized to do that.');
+        callback('Forbidden');
       }
     });
-
   }
 
 }
