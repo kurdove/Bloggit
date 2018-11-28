@@ -174,5 +174,69 @@ const Vote = require("../../src/db/models").Vote;
         });
 
     });
-     
+    //Assignment-Voting
+    describe("#hasUpvoteFor()", () => {
+        it("should output true if the user has upvote on post", done => {
+            Vote.create({
+                value: 1,
+                postId: this.post.id,
+                userId: this.user.id,
+            })
+            .then((vote) => {
+                this.vote = vote;
+                Post.create({
+                title: "Dummy post 01",
+                body: "Dummy post 01 body",
+                topicId: this.topic.id,
+                userId: this.user.id,
+                })
+                .then((newPost) => {
+                    expect(this.vote.postId).not.toBe(newPost.id);
+                    this.vote.setPost(newPost)
+                    .then((vote) => {
+                        expect(vote.postId).toBe(newPost.id);
+                        expect(this.vote.userId).toBe(newPost.userId);
+                        newPost.hasUpvoteFor(newPost.userId)
+                        .then((votes) => {
+                            expect(votes.length > 0).toBe(true);
+                            done();
+                        });
+                    });
+                });
+            });
+        });
+    });
+
+    describe("#hasDownvoteFor()", () => {
+        it("should output true if the user has downvote on post", done => {
+            Vote.create({
+                value: -1,
+                postId: this.post.id,
+                userId: this.user.id,
+            })
+            .then((vote) => {
+                this.vote = vote;
+                Post.create({
+                title: "Dummy post 02",
+                body: "Dummy post 02 body",
+                topicId: this.topic.id,
+                userId: this.user.id,
+                })
+                .then((newPost) => {
+                    expect(this.vote.postId).not.toBe(newPost.id);
+                    this.vote.setPost(newPost)
+                    .then((vote) => {
+                        expect(vote.postId).toBe(newPost.id);
+                        expect(this.vote.userId).toBe(newPost.userId);
+                        newPost.hasDownvoteFor(newPost.userId)
+                        .then((votes) => {
+                            expect(votes.length > 0).toBe(true);
+                            done();
+                        });
+                    });
+                });
+            });
+        });
+    });
+    
 });

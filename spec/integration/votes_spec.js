@@ -172,6 +172,36 @@ describe("routes : votes", () => {
             );
         });
     });
+    //Assignment-Voting
+    describe("GET /topics/:topicId/posts/:postId/votes/upvote", () => {
+
+      it("should not allow a member to upvote multiple times on the same post", (done) => {
+        Post.findOne({
+            where: {
+                title: "Dummy post"
+            }
+        })
+        Vote.create({
+            value: 1,
+            postId: this.post.id,
+            userId: this.user.id
+        })
+        .then(()=>{
+          Vote.create({
+          value: 1,
+          postId: this.post.id,
+          userId: this.user.id
+          });
+        })
+        .then((v) => {
+            done();
+        })
+        .catch((err) => {
+            expect(err.message).toContain("Only one upvote allowed.");
+            done();
+        });
+      });
+    });
   
   });
    
