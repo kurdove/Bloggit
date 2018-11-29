@@ -146,15 +146,20 @@ describe("routes : favorites", () => {
    
             it("should destroy a favorite", (done) => {
                 const options = {
-                url: `${base}${this.topic.id}/posts/${this.post.id}/favorites/create`
+                url: `${base}${this.topic.id}/posts/${this.post.id}/favorites/create`,
+                userId: this.user.id,
+                postId: this.post.id
                 };
     
                 let favCountBeforeDelete;
     
                 request.post(options, (err, res, body) => {
+                // console.log(this.post)
+                console.log(this.post.getFavorites())
                 this.post.getFavorites()
+                
                 .then((favorites) => {
-                    console.log('******', favorites)
+                    
                     const favorite = favorites[0];
                     favCountBeforeDelete = favorites.length;
                     
