@@ -216,5 +216,28 @@ describe("Favorite", () => {
         });
 
     });
+    //debugging
+    describe("#getFavorites()", () => {
 
+        it("should return the associated post", (done) => {
+            Favorite.create({
+            userId: this.user.id,
+            postId: this.post.id
+            })
+            .then((favorite) => {
+            this.post.getFavorites()
+            .then((favorites) => {
+                // console.log(favorites)
+                expect(favorites[0].userId).toBe(this.user.id);
+                done();
+            });
+            })
+            .catch((err) => {
+            console.log(err);
+            done();
+            });
+        });
+
+    });
+    //debugging
 });

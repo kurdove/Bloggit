@@ -11,6 +11,7 @@ module.exports = {
         userId: req.user.id
         })
         .then((favorite) => {
+        // console.log("Favorite Created Successfully");
         callback(null, favorite);
         })
         .catch((err) => {

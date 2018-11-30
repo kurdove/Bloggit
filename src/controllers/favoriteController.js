@@ -2,15 +2,21 @@ const favoriteQueries = require("../db/queries.favorites.js");
 
 module.exports = {
     create(req, res, next){
+        // console.log("Creating favorite for this user...");
+        // console.log(req.user);
         if(req.user){
         favoriteQueries.createFavorite(req, (err, favorite) => {
             if(err){
+                // console.log("Error creating favorite!");
+                // console.log(err);
             req.flash("error", err);
             }
         });
         } else {
         req.flash("notice", "You must be signed in to do that.")
         }
+        // console.log("Redirecting to this referer...");
+        // console.log(req.headers.referer);
         res.redirect(req.headers.referer);
     },
 
