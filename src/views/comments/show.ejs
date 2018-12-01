@@ -8,6 +8,8 @@
       sent by <%= comment.User.email %> on <%= comment.createdAt %>
     </small>
 
+    <% if(currentUser) { %>
+
     <% if(currentUser && currentUser.id === comment.userId || currentUser.isAdmin()) { %>
       <form style="display:initial"
             action="/topics/<%= post.topicId %>/posts/<%= post.id %>/comments/<%= comment.id %>/destroy"
@@ -15,6 +17,9 @@
         <button type="submit" class="btn btn btn-sm btn-outline-danger">Delete</button>
       </form>
     <% } %>
+
+    <% } %>
+    
     <hr>
   </div>
 <% } %>
