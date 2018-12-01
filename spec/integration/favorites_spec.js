@@ -154,12 +154,6 @@ describe("routes : favorites", () => {
                 let favCountBeforeDelete;
     
                 request.post(options, (err, res, body) => {
-                // console.log(this.post)
-                // console.log(this.post.getFavorites())
-                // console.log("Logging error object...");
-                // console.log(err);
-                // console.log("Logging response body...");
-                // console.log(body);
 
                 this.post.getFavorites()
                 
